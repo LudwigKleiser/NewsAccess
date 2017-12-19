@@ -19,5 +19,14 @@ namespace NewsSite.Data
         {
             base.OnModelCreating(builder);
         }
+
+        public void EmptyDatabase()
+        {
+            foreach (var user in Users)
+            {
+                Users.Remove(user);
+            }
+            SaveChanges();
+        }
     }
 }

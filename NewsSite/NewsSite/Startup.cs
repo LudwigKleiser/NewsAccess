@@ -30,7 +30,19 @@ namespace NewsSite
 
             services.AddAuthorization(options =>
             {
-                // TODO: Lägg in policys...
+                options.AddPolicy("HiddenNews", policy =>
+                policy.RequireRole("Admin", "Publisher", "Subscriber"));
+
+                options.AddPolicy("isOfAge", policy =>
+                policy.RequireClaim("MinimumAge"));
+
+                options.AddPolicy("PublishSport", policy =>
+                policy.RequireClaim("Sports"));
+
+                options.AddPolicy("PublishCulture", policy =>
+                policy.RequireClaim("Culture"));
+
+
 
             });
 
@@ -47,7 +59,7 @@ namespace NewsSite
             app.UseStatusCodePages();
             app.UseAuthentication();
 
-            app.UseMvc(); 
+            app.UseMvc();
         }
     }
 }

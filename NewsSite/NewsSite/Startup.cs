@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using NewsSite.Data;
+using System.Collections.Generic;
 
 namespace NewsSite
 {
@@ -54,12 +55,16 @@ namespace NewsSite
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            DefaultFilesOptions DefaultFile = new DefaultFilesOptions();
+            DefaultFile.DefaultFileNames.Clear();
+            DefaultFile.DefaultFileNames.Add("htmlpage.html");
+            app.UseDefaultFiles(DefaultFile);
             app.UseStaticFiles();
             app.UseStatusCodePages();
             app.UseAuthentication();
 
             app.UseMvc();
+            
         }
     }
 }

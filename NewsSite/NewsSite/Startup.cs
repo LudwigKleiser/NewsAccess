@@ -33,7 +33,7 @@ namespace NewsSite
                 options.AddPolicy("HiddenNews", policy =>
                 policy.RequireRole("Admin", "Publisher", "Subscriber"));
 
-                options.AddPolicy("isOfAge", policy =>
+                options.AddPolicy("IsOfAge", policy =>
                 policy.RequireClaim("MinimumAge"));
 
                 options.AddPolicy("PublishSport", policy =>

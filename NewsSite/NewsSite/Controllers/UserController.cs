@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using NewsSite.Data;
+using NewsSite.Models;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -31,6 +32,25 @@ namespace NewsSite.Controllers
         }
 
         [HttpGet,Route("UsersAndClaims")]
+      async  public Task<IActionResult> UsersAndClaims()
+        {
+            var users = _userManager.Users;
+            List<UserClaim> usersClaims = new List<UserClaim>();
+            foreach (var user in users)
+            { 
+                usersClaims.Add(new UserClaim
+                {
+                    User = user,
+                    Claims = await _userManager.GetClaimsAsync(user)
+
+
+                });
+                
+            }
+
+
+            return Ok(usersClaims);
+        }
 
         [HttpGet, Route("Empty")]
         async public Task<IActionResult> EmptyDatabase()
@@ -98,8 +118,11 @@ namespace NewsSite.Controllers
 
             return Ok(_userManager.Users);
         }
-
-
+        [HttpGet,Route("Users")]
+        public IActionResult Users()
+        {
+            return Ok(_userManager.Users);
+        }
         [Authorize(Policy = "isOfAge")]
         [HttpGet, Route("test")]
         public IActionResult Test()

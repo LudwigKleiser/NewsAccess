@@ -11,7 +11,7 @@ using System;
 namespace NewsSite.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20171219102606_News")]
+    [Migration("20171220090243_News")]
     partial class News
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

@@ -65,7 +65,7 @@ namespace NewsSite.Controllers
         }
 
         [Authorize(Policy = "HiddenNews")]
-        [Authorize(Policy = "isOfAge")]
+        [Authorize(Policy = "IsOfAge")]
         [HttpGet, Route("HiddenAgeNews")]
         public IActionResult HiddenAgeNews()
         {

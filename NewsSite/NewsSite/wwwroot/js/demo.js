@@ -1,4 +1,33 @@
-﻿$("#recreate").click(function () {
+﻿$(window).on('load', function () {
+    $.ajax({
+        url: 'user/Users',
+        method: 'GET',
+        data: {
+
+        }
+    })
+
+        .done(function (result) {
+            console.log("Success!", result);
+
+            let contentString = "";
+            $.each(result, function (index, users) {
+                contentString += '<option value="' + users.email + '">' + users.email + '</option >'
+
+            });
+            $("#user").html(contentString);
+
+        })
+
+        .fail(function (xhr, status, error) {
+
+
+            console.log("Error", xhr, status, error);
+
+        });
+});
+
+$("#recreate").click(function () {
 
     $.ajax({
         url: 'user/Empty',
@@ -177,3 +206,30 @@ $("#isHidden20").click(function () {
 
         });
 });
+
+$("#usersAndClaims").click(function () {
+
+    $.ajax({
+
+        url: 'user/usersAndClaims',
+        method: 'GET',
+        data: {
+
+
+        }
+    })
+
+        .done(function (result) {
+            console.log("Success!", result);
+
+
+        })
+
+        .fail(function (xhr, status, error) {
+
+
+            console.log("Error", xhr, status, error);
+
+        });
+});
+
